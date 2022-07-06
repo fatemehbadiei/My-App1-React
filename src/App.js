@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React ,{Component} from "react" ;
+import Notes from "./components/Notes";
+
+//
+// class App extends Component{
+//   render (){
+//     return(
+//         <>
+//           <Notes/>
+//         </>
+//     );
+//   }
+//
+// }
+// export default App;
+
+
+class App extends Component{
+
+    state = {
+        notes:[
+            {id:5 , text: "note5"},
+            {id:6 , text: "note6"},
+            {id:7 , text: "note7"},
+            {id:8 , text: "note8"},
+        ]
+    }
+    handelDelet =(id) =>{
+        const newNotes = this.state.notes.filter(note => note.id !== id);
+        this.setState({notes : newNotes})
+    }
+
+    render (){
+        return(
+            <>
+                <Notes onDeletApp={this.handelDelet} notes={this.state.notes}/>
+            </>
+        );
+    }
+
 }
-
 export default App;
+
